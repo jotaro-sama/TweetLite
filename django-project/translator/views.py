@@ -77,4 +77,4 @@ def translate(request):
             rez = translation['translations'][0]['translation']
         except WatsonApiException as err:
             rez = rez + 'Could not translate sentence.'
-    return HttpResponse(rez + '<br><small>Translation powered by IBM Watson<small>')
+    return HttpResponse(rez)

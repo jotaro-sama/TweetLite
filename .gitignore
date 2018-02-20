@@ -102,3 +102,11 @@ ENV/
 
 #Ibm Watson API credentials
 .ibmwcred
+
+#Twitter API credentials
+.twapicred
+
+#db stuff
+*.sqlite3
+migrations/
+db.sqlite3
