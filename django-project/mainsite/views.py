@@ -15,9 +15,6 @@ import base64
 import math
 import random
 import sys
-import requests
-import requests.auth
-
 
 from .models import twitterer
 
