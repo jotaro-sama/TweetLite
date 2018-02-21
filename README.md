@@ -10,7 +10,7 @@ oauth_callback: {url where your main website resides}/logged/
 consumer_secret: {your oauth consumer secret}
 ```
 The server currently supports the default port (8000) only. Multiple port support to be added in the future.
-You'll also need to set appropriate IBM Watson credentials. Details in the Translator API section.
+You'll also need to appropriately configure the translator, and the RabbitMQ logging. Details in the Translator API and RabbitMQ logging sections.
 
 To run the server with default values, just run the following:
 ```
@@ -27,3 +27,7 @@ username: {username}
 password: {password}
 ```
 To use it, the client must submit a GET request with a `text` parameter containing the text to translate (e.g. `127.0.0.1:8000/translator/?text={text to translate}`). For some reason it works better with sentences, single words may give weird results, expecially if from languages other than english.
+
+# RabbitMQ logging
+Whenever a user translates his bio, a message will be sent to a local AMQP-based MQRabbit broker, whose messages can be retrieved and printed on the terminal at any time by running `logger.py`. To make it work, you'll need to install [the pika AMQP client](https://pypi.python.org/pypi/pika) in your Python virtual environment or system. You'll also need to have [a RabbitMQ server instance running on localhost on the default port](https://www.rabbitmq.com/download.html).
+
