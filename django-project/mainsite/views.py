@@ -141,7 +141,7 @@ def logged(request):
     channel.queue_declare(queue='userlog')
     channel.basic_publish(exchange='',
                       routing_key='userlog',
-                      body='That bastard %s translated his bio!' % name)
+                      body='The gentlesir who goes by the name of %s translated his bio!' % name)
     print(" [x] Logging message posted to queue")
     connection.close()
 
