@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('translator/', include('translator.urls')),
     path('', include('mainsite.urls')),
+    path('websocket/', include('websocket.urls')),
 ]

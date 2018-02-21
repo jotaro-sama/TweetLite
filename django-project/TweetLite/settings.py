@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'websocket.apps.WebsocketConfig',
     'mainsite.apps.MainsiteConfig',
     'translator.apps.TranslatorConfig',
     'django.contrib.admin',
@@ -121,6 +123,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 #SECURE_SSL_REDIRECT = True
 #SESSION_COOKIE_SECURE = True
 #CSRF_COOKIE_SECURE = True
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+        'ROUTING': 'TweetLite.routing.channel_routing',
+    }
+}
