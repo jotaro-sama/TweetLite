@@ -15,6 +15,7 @@ import base64
 import math
 import random
 import sys
+import pika
 
 from .models import twitterer
 
@@ -133,5 +134,15 @@ def logged(request):
     translated_bio = resp.read()
 
     context = { 'name' : name, 'bio' : translated_bio.decode('utf-8')}
+
+    #Sending logging info to broker before returning rendered page
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='userlog')
+    channel.basic_publish(exchange='',
+                      routing_key='userlog',
+                      body='That bastard %s translated his bio!' % name)
+    print(" [x] Logging message posted to queue")
+    connection.close()
 
     return render(request, 'mainsite/translated.html', context=context)
