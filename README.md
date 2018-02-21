@@ -29,11 +29,11 @@ password: {password}
 To use it, the client must submit a GET request with a `text` parameter containing the text to translate (e.g. `127.0.0.1:8000/translator/?text={text to translate}`). For some reason it works better with sentences, single words may give weird results, expecially if from languages other than english.
 
 # RabbitMQ logging
-Whenever a user translates his bio, a message will be sent to a local AMQP-based MQRabbit broker, whose messages can be retrieved and printed on the terminal at any time by running `logger.py`. To make it work, you'll need to install [the pika AMQP client](https://pypi.python.org/pypi/pika) in your Python virtual environment or system. You'll also need to have [a RabbitMQ server instance running on localhost on the default port](https://www.rabbitmq.com/download.html).
+Whenever a user translates his bio, a message notifying it will be sent to a local AMQP-based MQRabbit broker, whose messages can be retrieved and printed on the terminal at any time by running `logger.py`. To make it work, you'll need to install [the pika AMQP client](https://pypi.python.org/pypi/pika) in your Python virtual environment or system. You'll also need to have [a RabbitMQ server instance running on localhost on the default port](https://www.rabbitmq.com/download.html).
 
 # Websocket
-This website also has a websocket section (available at http://127.0.0.1/websocket/. Users need to sign up at http://127.0.0.1/websocket/sign_up, then sign in and the'll be able to visualize the online status of other users.
-To make it work you'll need to have a Redis server running on your server at the default port, and to install the following modules on your virtual environment or machine: 
+This website also has a websocket section (available at http://127.0.0.1/websocket/). Users need to sign up first at http://127.0.0.1/websocket/sign_up, then sign in and the'll be able to visualize the online status of other users.
+To make it work you'll need to have a [Redis server](https://redis.io/download) installed and running on your machine at the default port, and to also have the Redis backend, Django Channels 1.x (NOT 2.x, it's important), and ASGI-redis on your virtual environment or machine. To be sure you have the right ones, just run the following commands: 
 ```
 pip install -U asgi_redis
 pip install channels==1.0.2 
